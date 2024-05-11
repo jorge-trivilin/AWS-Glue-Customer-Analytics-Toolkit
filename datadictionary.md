@@ -25,11 +25,11 @@ The script processes data from the "database_name"."sales_data_table" using SQL 
 The final SELECT operation:
    - Joins the results from these WITH clause tables to consolidate and report on the revenue and purchases by category alongside the total revenue and purchases for each customer. Output is then unloaded to an S3 bucket, formatted for efficiency and analytical processing.
 
-### Data Dictionary for the Spark Script
+### 2. Data Dictionary for the Spark Script
 
 This data dictionary outlines the flow of data processing performed by the script using Apache Spark within an AWS Glue job.
 
-#### 2. Functions and Transformations
+#### Functions and Transformations
 
 1. **Initialization**:
    - **Spark Context**: Used to manage Spark job processes.
