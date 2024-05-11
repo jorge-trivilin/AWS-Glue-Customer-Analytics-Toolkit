@@ -1,4 +1,4 @@
-NLOAD (
+UNLOAD (
 WITH total_customer_revenue AS (
 	SELECT customer_id,
 		SUM(gross_sales) AS total_revenue
