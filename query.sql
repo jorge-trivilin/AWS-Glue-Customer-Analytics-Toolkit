@@ -46,8 +46,27 @@ revenue_purchases_by_category AS (
 		AND customer_id IS NOT NULL
 	GROUP BY customer_id,
 		CASE
-			/* Category case conditions are similar to those described above */
-		END
+			WHEN sub_category = 'DAIRY' THEN 'DAIRY PRODUCTS'
+			WHEN sub_category = 'MEAT' THEN 'FRESH MEAT'
+			WHEN sub_category = 'BAKERY' THEN 'BAKED GOODS'
+			WHEN sub_category = 'PRODUCE' THEN 'FRESH PRODUCE'
+			WHEN sub_category = 'SEAFOOD' THEN 'FRESH SEAFOOD'
+			WHEN sub_category = 'BEVERAGES' THEN 'BEVERAGES'
+			WHEN sub_category = 'SNACKS' THEN 'SNACKS'
+			WHEN sub_category = 'FROZEN' THEN 'FROZEN FOODS'
+			WHEN sub_category = 'CANNED' THEN 'CANNED GOODS'
+			WHEN sub_category = 'CONDIMENTS' THEN 'CONDIMENTS/SAUCES'
+			WHEN sub_category = 'SPICES' THEN 'SPICES AND HERBS'
+			WHEN sub_category = 'INTERNATIONAL' THEN 'INTERNATIONAL FOODS'
+			WHEN sub_category = 'GRAINS' THEN 'GRAINS AND PASTAS'
+			WHEN sub_category = 'CLEANING' THEN 'CLEANING SUPPLIES'
+			WHEN sub_category = 'HEALTH' THEN 'HEALTH AND WELLNESS'
+			WHEN sub_category = 'BEAUTY' THEN 'PERSONAL CARE'
+			WHEN sub_category = 'PETS' THEN 'PET SUPPLIES'
+			WHEN sub_category = 'BABY' THEN 'BABY PRODUCTS'
+			WHEN sub_category = 'MISC' THEN 'MISCELLANEOUS'
+			ELSE sub_category || ' OTHERS'
+		END AS grouped_category,
 )
 SELECT rcc.customer_id,
 	rcc.grouped_category,
