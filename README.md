@@ -4,6 +4,17 @@
 
 All scripts in this repository have been anonymized for security and privacy. This includes category names, data paths, and any other specific identifiers, which have been replaced or generalized. Please adapt the column names and data formats to fit your specific dataset.
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+
+### About The Creator
+
+*This project was created by Jorge Trivilin.* 
+
+*Connect with Jorge here:*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jorge_Trivilin-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/jorgetrivilin/)
+[![GitHub](https://img.shields.io/badge/GitHub-jorgetrivilin-lightgrey?style=flat&logo=github)](https://github.com/jorge-trivilin/)
+
 ## Features
 - **Data Loading and Transformation**: Loads and transforms data from the AWS Glue Catalog to prepare it for analysis.
 - **Metric Calculation**: Calculates customized customer engagement metrics to assess the effectiveness of marketing and sales strategies.
@@ -30,7 +41,3 @@ All scripts in this repository have been anonymized for security and privacy. Th
 
 ### Running the Job
 - The job can be executed directly through the AWS Glue console or scheduled to run based on triggers set by cron or S3 events.
-
-## Contact
-- **Author**: Jorge Trivilin
-- **Email**: [jorge.trivilin@gmail.com](mailto:jorge.trivilin@gmail.com)
