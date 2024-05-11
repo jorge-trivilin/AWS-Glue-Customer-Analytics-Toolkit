@@ -1,39 +1,41 @@
-# GlueShopperMissionMetricsOptimizer
+**Glue Shopper Mission Metrics Optimizer**
 
-## Descrição
-O **GlueMetricsOptimizer** é um script Spark projetado para ser executado no ambiente AWS Glue. Ele otimiza e calcula métricas de compras e receitas por cliente, com base em dados históricos. Este script processa grandes volumes de dados para identificar a "missão de compra" mais relevante para cada cliente, utilizando critérios como a receita total e o número de compras em diferentes categorias.
+**Description**
+The GlueMetricsOptimizer is a Spark script designed to be executed in the AWS Glue environment. It optimizes and calculates purchase and revenue metrics per customer, based on historical data. This script processes large volumes of data to identify the most relevant "shopping mission" for each customer, using criteria such as total revenue and the number of purchases across different categories.
 
-## Recursos
-- Carregamento e transformação de dados do AWS Glue Catalog.
-- Cálculo de métricas personalizadas de engajamento do cliente.
-- Seleção de missões de compras mais significativas para cada cliente.
-- Exportação de dados processados para o Amazon S3 em formato Parquet, com compressão Snappy.
+**Features**
+- Loading and transforming data from the AWS Glue Catalog.
+- Calculation of customized customer engagement metrics.
+- Selection of the most significant shopping missions for each customer.
+- Export of processed data to Amazon S3 in Parquet format, using Snappy compression.
 
-## Pré-requisitos
+**Prerequisites**
 - AWS Account
-- Configuração do AWS Glue
-- Permissões de IAM apropriadas para o AWS Glue e o S3
-- Bucket do S3 para armazenar os scripts e os dados de saída
+- AWS Glue setup
+- Appropriate IAM permissions for AWS Glue and S3
+- S3 bucket to store the scripts and output data
 
-## Configuração
-1. **IAM Role**: Certifique-se de que a role do IAM usada pelo AWS Glue tenha permissão para acessar os recursos necessários no S3.
-2. **Bucket do S3**: Crie ou especifique um bucket do S3 para armazenar o script e os dados de saída.
+**Setup**
+- **IAM Role**: Ensure that the IAM role used by AWS Glue has permissions to access the necessary resources on S3.
+- **S3 Bucket**: Create or specify an S3 bucket to store the script and output data.
 
-## Uso
-### Configuração do Job no AWS Glue
-1. Faça login no console da AWS e navegue até o serviço AWS Glue.
-2. Crie um novo job e selecione um `IAM role` que tenha as permissões necessárias.
-3. Carregue o script `GlueMetricsOptimizer.py` no editor de scripts do job ou especifique o caminho do S3 onde o script está armazenado.
-4. Configure os parâmetros necessários, como o nome do job e quaisquer argumentos de script específicos.
-5. Salve e execute o job para processar seus dados.
+**Usage**
+- **Setting up the Job in AWS Glue**
+  - Log in to the AWS console and navigate to the AWS Glue service.
+  - Create a new job and select an IAM role that has the necessary permissions.
+  - Upload the GlueMetricsOptimizer.py script to the job's script editor or specify the S3 path where the script is stored.
+  - Configure the necessary parameters, such as the job name and any specific script arguments.
+  - Save and execute the job to process your data.
 
-### Executando o Job
-- O job pode ser executado diretamente através do console do AWS Glue ou programado para execução com base em gatilhos definidos por cron ou eventos do S3.
+- **Running the Job**
+  - The job can be executed directly through the AWS Glue console or scheduled to run based on triggers set by cron or S3 events.
 
-## Manutenção
-- **Atualizações do Script**: Atualize o script no repositório e ajuste os parâmetros no job do Glue conforme necessário.
-- **Monitoramento**: Monitore a execução do job através dos logs do CloudWatch para garantir que está executando como esperado.
+**Maintenance**
+- **Script Updates**: Update the script in the repository and adjust the parameters in the Glue job as needed.
+- **Monitoring**: Monitor the job's execution through CloudWatch logs to ensure it is running as expected.
 
-## Contato
-- **Autor**: Jorge Trivilin
+**Contact**
+- **Author**: Jorge Trivilin
 - **Email**: jorge.trivilin@gmail.com
+
+---
