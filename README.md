@@ -35,7 +35,7 @@ All scripts in this repository have been anonymized for security and privacy. Th
 ### Setting up the Job in AWS Glue
 1. Log in to the AWS console and navigate to the AWS Glue service.
 2. Create a new job and select an IAM role that has the necessary permissions.
-3. Upload the `GlueMetricsOptimizer.py` script to the job's script editor or specify the S3 path where the script is stored.
+3. Upload the `CustomerInsightOptimizer.py` script to the job's script editor or specify the S3 path where the script is stored.
 4. Configure the necessary parameters, such as the job name and any specific script arguments.
 5. Save and execute the job to process your data.
 
