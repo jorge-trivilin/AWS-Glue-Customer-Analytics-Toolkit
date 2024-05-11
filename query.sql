@@ -1,4 +1,4 @@
-UNLOAD (
+NLOAD (
 WITH total_customer_revenue AS (
 	SELECT customer_id,
 		SUM(gross_sales) AS total_revenue
@@ -18,48 +18,26 @@ total_customer_purchases AS (
 revenue_purchases_by_category AS (
 	SELECT customer_id,
 		CASE
-			WHEN top_level_category = 'PHARMACY' THEN top_level_category
-			WHEN sub_category = 'FOOD' THEN sub_category
-			WHEN sub_category = 'GENERAL GOODS' THEN sub_category
-			WHEN sub_category = 'BEAUTY' THEN sub_category
-			WHEN sub_category = 'SKINCARE' THEN sub_category
-			WHEN sub_category = 'HYGIENE' THEN sub_category
-			WHEN sub_category = 'CHILDREN' THEN sub_category
-			WHEN sub_category = 'HEALTH' THEN sub_category
-			WHEN sub_category = 'OTC'
-			and sub_sub_category = 'PAIN AND FEVER' THEN 'OTC ' || sub_sub_category
-			WHEN sub_category = 'OTC'
-			and sub_sub_category = 'DIGESTIVE HEALTH' THEN 'OTC ' || sub_sub_category
-			WHEN sub_category = 'OTC'
-			and sub_sub_category = 'COLD AND FLU' THEN 'OTC ' || sub_sub_category
-			WHEN sub_category = 'OTC'
-			and sub_sub_category = 'EYE CARE' THEN 'OTC ' || sub_sub_category
-			WHEN sub_category = 'OTC'
-			and sub_sub_category = 'VITAMINS AND MINERALS' THEN 'OTC ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'ALLERGY' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'ANTIBIOTIC' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'ANTI-INFLAMMATORY' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'DERMATOLOGICAL' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'DIABETES' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'CARDIOVASCULAR SYSTEM' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'GENITAL HORMONAL SEX' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'NERVOUS SYSTEM' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'RESPIRATORY SYSTEM' THEN 'CONTINUOUS RX ' || sub_sub_category
-			WHEN sub_category = 'PRESCRIPTION'
-			and sub_sub_category = 'VITAMINS AND MINERALS' THEN 'CONTINUOUS RX ' || sub_sub_category
-			when sub_category = 'MISC PROMOTIONS' then 'OTHERS'
-			when sub_category = 'COMPOUNDED' then 'OTHERS'
-			when sub_category = 'UNCLASSIFIED' then 'OTHERS'
-			when sub_category = 'SERVICE' then 'SERVICE OTHERS' ELSE sub_category || ' OTHERS'
+			WHEN sub_category = 'DAIRY' THEN 'DAIRY PRODUCTS'
+			WHEN sub_category = 'MEAT' THEN 'FRESH MEAT'
+			WHEN sub_category = 'BAKERY' THEN 'BAKED GOODS'
+			WHEN sub_category = 'PRODUCE' THEN 'FRESH PRODUCE'
+			WHEN sub_category = 'SEAFOOD' THEN 'FRESH SEAFOOD'
+			WHEN sub_category = 'BEVERAGES' THEN 'BEVERAGES'
+			WHEN sub_category = 'SNACKS' THEN 'SNACKS'
+			WHEN sub_category = 'FROZEN' THEN 'FROZEN FOODS'
+			WHEN sub_category = 'CANNED' THEN 'CANNED GOODS'
+			WHEN sub_category = 'CONDIMENTS' THEN 'CONDIMENTS/SAUCES'
+			WHEN sub_category = 'SPICES' THEN 'SPICES AND HERBS'
+			WHEN sub_category = 'INTERNATIONAL' THEN 'INTERNATIONAL FOODS'
+			WHEN sub_category = 'GRAINS' THEN 'GRAINS AND PASTAS'
+			WHEN sub_category = 'CLEANING' THEN 'CLEANING SUPPLIES'
+			WHEN sub_category = 'HEALTH' THEN 'HEALTH AND WELLNESS'
+			WHEN sub_category = 'BEAUTY' THEN 'PERSONAL CARE'
+			WHEN sub_category = 'PETS' THEN 'PET SUPPLIES'
+			WHEN sub_category = 'BABY' THEN 'BABY PRODUCTS'
+			WHEN sub_category = 'MISC' THEN 'MISCELLANEOUS'
+			ELSE sub_category || ' OTHERS'
 		END AS grouped_category,
 		SUM(gross_sales) AS revenue_in_category,
 		COUNT(DISTINCT receipt_number) AS purchases_in_category
@@ -78,6 +56,6 @@ SELECT rcc.customer_id,
 FROM revenue_purchases_by_category rcc
 	JOIN total_customer_revenue tcr ON rcc.customer_id = tcr.customer_id
 	JOIN total_customer_purchases tcp ON rcc.customer_id = tcp.customer_id
-	) 
-	TO 's3://data-store-path/processed-data/fiscal-year=2024/' 
-	WITH (format = 'PARQUET', compression = 'SNAPPY')
+) 
+TO 's3://data-store-path/processed-data/fiscal-year=2024/' 
+WITH (format = 'PARQUET', compression = 'SNAPPY')
