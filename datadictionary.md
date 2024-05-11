@@ -1,4 +1,4 @@
-### Data Dictionary for the Output of the Query
+### 1. Data Dictionary for the Output of the Query
 
 | Field Name             | Type      | Description |
 |------------------------|-----------|-------------|
@@ -24,3 +24,55 @@ The script processes data from the "database_name"."sales_data_table" using SQL 
 
 The final SELECT operation:
    - Joins the results from these WITH clause tables to consolidate and report on the revenue and purchases by category alongside the total revenue and purchases for each customer. Output is then unloaded to an S3 bucket, formatted for efficiency and analytical processing.
+
+### Data Dictionary for the Spark Script
+
+This data dictionary outlines the flow of data processing performed by the script using Apache Spark within an AWS Glue job.
+
+#### 2. Functions and Transformations
+
+1. **Initialization**:
+   - **Spark Context**: Used to manage Spark job processes.
+   - **Glue Context**: Initializes the context for AWS Glue jobs.
+   - **Spark Session**: Provides a point of interaction with underlying Spark functionality.
+   - **Glue Job**: Configuration and execution of the AWS Glue job.
+
+2. **Data Loading**:
+   - **Dynamic Frame Creation**: Data is loaded into a dynamic frame from AWS Glue Catalog.
+   - **DataFrame Conversion**: Converts Glue DynamicFrame to Spark DataFrame.
+
+3. **Column Data Types**:
+   - `customer_id`: Identified as a string, key identifier for customer.
+   - `grouped_category`: String type, represents categories aggregated from subcategories.
+   - `category_revenue`: Float type, holds revenue data per category.
+   - `category_purchases`: Float type, stores purchase count data per category.
+
+4. **Metric Calculation** (`calculate_metrics` function):
+   - **Total Revenue Per Customer**: Aggregates revenue by customer.
+   - **Revenue Percentage**: Calculates percentage of total revenue by category per customer.
+   - **Total Purchases Per Customer**: Aggregates purchase counts by customer.
+   - **Purchase Percentage**: Calculates percentage of total purchases by category per customer.
+   - **Composite Metric**: Final metric combining revenue and purchase percentages, scaled by 100.
+
+5. **Shopping Mission Selection** (`select_shopping_mission` function):
+   - **Window Specification**: Defines the partitioning and ordering of data for selection.
+   - **Row Number Application**: Identifies the highest-ranking shopping mission per customer.
+   - **Data Filtering**: Selects the top result per customer to determine the primary shopping mission.
+   - **Column Renaming**: For clarity in final output.
+
+6. **Data Output**:
+   - **Data Storage**: Results are stored in S3 in Parquet format.
+   - **Partitioning**: Data is partitioned by 'Period' for organized storage.
+   - **Compression**: Uses Snappy compression to optimize storage.
+
+#### Final DataFrame Output Columns:
+
+| Output Column Name     | Description                                |
+|------------------------|--------------------------------------------|
+| **customer**           | Renamed 'customer_id', identifier for customer. |
+| **shopping_mission**   | Renamed 'grouped_category', primary category of interest for the customer. |
+| **mission_revenue**    | Renamed 'category_revenue', revenue from the primary shopping mission. |
+| **mission_purchases**  | Renamed 'category_purchases', purchase count from the primary shopping mission. |
+| **mission_metric**     | Renamed 'metric', calculated metric determining the significance of the shopping mission. |
+
+This script is structured to perform comprehensive data transformation and analysis, leveraging Spark's distributed computing capabilities within the AWS Glue environment to efficiently process and analyze large datasets.
