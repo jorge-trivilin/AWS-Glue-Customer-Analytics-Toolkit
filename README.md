@@ -34,12 +34,6 @@ O **GlueMetricsOptimizer** é um script Spark projetado para ser executado no am
 - **Atualizações do Script**: Atualize o script no repositório e ajuste os parâmetros no job do Glue conforme necessário.
 - **Monitoramento**: Monitore a execução do job através dos logs do CloudWatch para garantir que está executando como esperado.
 
-## Contribuições
-Contribuições para o **GlueMetricsOptimizer** são bem-vindas. Antes de enviar qualquer atualização, por favor, discuta as mudanças que deseja fazer através de issues.
-
-## Licença
-Inclua aqui informações sobre a licença sob a qual o script é disponibilizado. Geralmente, scripts em repositórios públicos podem usar licenças como MIT ou Apache 2.0.
-
 ## Contato
-- **Autor**: [Seu Nome]
-- **Email**: [Seu Email]
+- **Autor**: Jorge Trivilin
+- **Email**: jorge.trivilin@gmail.com
