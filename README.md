@@ -1,6 +1,5 @@
 **Glue Shopper Mission Metrics Optimizer**
 
-**Description**
 The GlueMetricsOptimizer is a Spark script designed to be executed in the AWS Glue environment. It optimizes and calculates purchase and revenue metrics per customer, based on historical data. This script processes large volumes of data to identify the most relevant "shopping mission" for each customer, using criteria such as total revenue and the number of purchases across different categories.
 
 **Features**
