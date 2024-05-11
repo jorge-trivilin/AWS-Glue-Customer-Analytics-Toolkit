@@ -2,6 +2,8 @@
 
 *The Glue Shopper Mission Metrics Optimizer is a sophisticated AWS Glue Spark script engineered for data analysts and data scientists working with crm. This script leverages the power of big data to optimize and calculate key customer metrics, such as purchase frequency and revenue generation, across various product categories. This script processes large volumes of data to identify the most relevant "shopping mission" for each customer, using criteria such as total revenue and the number of purchases across different categories.*
 
+This engine serves as a foundational layer for advanced analytics workflows, including machine learning pipelines. It is especially effective in preparing and structuring data for clustering algorithms, such as K-Means. By optimizing and calculating key customer metrics like purchase frequency and revenue generation across various product categories, it sets the stage for identifying meaningful customer segments.
+
 All scripts in this repository have been anonymized for security and privacy. This includes category names, data paths, and any other specific identifiers, which have been replaced or generalized. Please adapt the column names and data formats to fit your specific dataset.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
